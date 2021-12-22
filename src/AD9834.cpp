@@ -15,11 +15,9 @@ void AD9834::update_freq(float freq)
 void AD9834::update_freq_reg(uint16_t MSB, uint16_t LSB){
   uint16_t freq_reg_address;
   if(_use_freq_reg_1){
-    // Serial.println("Using register 1");
     freq_reg_address = 0x8000;
   }
   else{
-    // Serial.println("Using register 0");
     freq_reg_address = 0x4000;
   }
 
@@ -27,15 +25,9 @@ void AD9834::update_freq_reg(uint16_t MSB, uint16_t LSB){
   MSB |= freq_reg_address;
 
   uint16_t control_reg = 0x2000;
-  // OR it with what we are currently using
-  // if(!_use_freq_reg_1){
-  //   control_reg |= 0x800;
-  // }
   _transfer16(control_reg);
   _transfer16(LSB);
   _transfer16(MSB);
-  // _transfer16(0xC000);
-  // _transfer16(0x2000);
 
   if(_use_freq_reg_1)
   {

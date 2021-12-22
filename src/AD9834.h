@@ -18,9 +18,9 @@ public:
     _transfer16(0x100);
   };
 
-  // Updates the frequency register directly - this does
-  // not include the register select pin which is tracked
-  // by this class.
+  // Updates the frequency register directly - this writes to the 'other'
+  // frequency control register than the one in use, then switches the DDS over to
+  // it.
   void update_freq_reg(uint16_t MSB, uint16_t LSB);
   void update_freq(float freq);
   long get_freq(){ return _last_freq; };
